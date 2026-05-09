@@ -29,20 +29,7 @@ on:
         type: string
         default: '1800'
 
-      upload_method:
-        description: '📤 روش ذخیره نهایی'
-        required: true
-        type: choice
-        options:
-          - repository (push to repo)
-          - release (GitHub Releases)
-        default: 'repository (push to repo)'
 
-      release_tag:
-        description: '🏷️ نام تگ ریلیز (فقط در صورت انتخاب Release)'
-        required: false
-        type: string
-        default: ''
 
 permissions:
   contents: write
@@ -175,7 +162,6 @@ jobs:
         run: echo "date=$(date '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
 
       - name: 📤 Push to Repository
-        if: github.event.inputs.upload_method == 'repository (push to repo)'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
